@@ -1,11 +1,12 @@
+
 {
-  "name": "Radio Junto a Ti - Cantos a Dios",
+  "name": "Radio Junto a Ti",
   "short_name": "Radio Junto a Ti",
-  "start_url": "./radio_junto_a_ti_pwa.html",
+  "description": "Cantos a Dios - Radio Junto a Ti en vivo",
+  "start_url": "./radio_junto_a_ti_lazy_sin_botones_visibles_abajo.html",
   "display": "standalone",
-  "background_color": "#000428",
-  "theme_color": "#001c3d",
-  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#0d47a1",
   "icons": [
     {
       "src": "https://i.postimg.cc/LXsjTnpb/Picsart-25-06-21-23-48-39-723.png",
