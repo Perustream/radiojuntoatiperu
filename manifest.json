@@ -3,7 +3,7 @@
   "name": "Radio Junto a Ti",
   "short_name": "Radio Junto a Ti",
   "description": "Cantos a Dios - Radio Junto a Ti en vivo",
-  "start_url": "./radio_junto_a_ti_lazy_sin_botones_visibles_abajo.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#0d47a1",
