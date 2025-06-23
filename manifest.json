@@ -1,0 +1,21 @@
+{
+  "name": "Radio Junto a Ti - Cantos a Dios",
+  "short_name": "Radio Junto a Ti",
+  "start_url": "./radio_junto_a_ti_pwa.html",
+  "display": "standalone",
+  "background_color": "#000428",
+  "theme_color": "#001c3d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/LXsjTnpb/Picsart-25-06-21-23-48-39-723.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.postimg.cc/LXsjTnpb/Picsart-25-06-21-23-48-39-723.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
