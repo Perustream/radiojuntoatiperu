@@ -591,7 +591,8 @@ body {
   background: none !important;
   overflow-x: hidden;
 }
-</style><link rel="icon" type="image/png" href="https://i.postimg.cc/LXsjTnpb/Picsart-25-06-21-23-48-39-723.png"></head><body><div class="overlay-bg"></div><div class="top-bar"><div style="width: 100%; text-align: center;"><div id="reloj" style="font-family: Arial Black, sans-serif; font-size: 28px;">00:00:00</div></div></div><div style="display: flex; justify-content: center; margin-top: 20px;"><div style="position: relative; width: 180px; height: 180px;"><img src="https://i.postimg.cc/LXsjTnpb/Picsart-25-06-21-23-48-39-723.png" alt="Logo Radio Junto a Ti" class="logo-principal" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;; border: 4px solid white"/><div id="caratulaContainer" style="
+</style><link rel="icon" type="image/png" href="https://i.postimg.cc/LXsjTnpb/Picsart-25-06-21-23-48-39-723.png"><link rel="manifest" href="manifest.json">
+</head><body><div class="overlay-bg"></div><div class="top-bar"><div style="width: 100%; text-align: center;"><div id="reloj" style="font-family: Arial Black, sans-serif; font-size: 28px;">00:00:00</div></div></div><div style="display: flex; justify-content: center; margin-top: 20px;"><div style="position: relative; width: 180px; height: 180px;"><img src="https://i.postimg.cc/LXsjTnpb/Picsart-25-06-21-23-48-39-723.png" alt="Logo Radio Junto a Ti" class="logo-principal" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;; border: 4px solid white"/><div id="caratulaContainer" style="
       position: absolute;
       bottom: -12px;
       right: -12px;
@@ -1221,7 +1222,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entry.isIntersecting) {
         const container = document.getElementById("tvContainer");
         if (container && !container.dataset.loaded) {
-          container.innerHTML = '<iframe width="100%" height="240" src="https://stmv6.voxtvhd.com.br/emanueltv/emanueltv/playlist.m3u8" frameborder="0" allowfullscreen></iframe>';
+          container.innerHTML = '<video id="tvPlayer" width="100%" height="240" controls muted autoplay playsinline style="border-radius: 12px;"></video>';
           container.dataset.loaded = "true";
         }
       }
@@ -1272,7 +1273,70 @@ installBtn.addEventListener("click", async () => {
     deferredPrompt = null;
   }
 });
-</script></body></html><style>
+</script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const video = document.getElementById("tvPlayer");
+  const tvStream = "https://stmv6.voxtvhd.com.br/emanueltv/emanueltv/playlist.m3u8";
+  if (video && window.Hls && Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(tvStream);
+    hls.attachMedia(video);
+  } else if (video && video.canPlayType("application/vnd.apple.mpegurl")) {
+    video.src = tvStream;
+  }
+});
+</script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log("✅ SW registrado"))
+      .catch(e => console.error("❌ SW error", e));
+  }
+</script>
+
+<button id="installBtn" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 16px;
+  background: #0d47a1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
+  display: none;
+">📲 Instalar App</button>
+
+<script>
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (installBtn) installBtn.style.display = "block";
+});
+if (installBtn) {
+  installBtn.addEventListener("click", async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === "accepted") {
+        installBtn.style.display = "none";
+      }
+      deferredPrompt = null;
+    }
+  });
+}
+</script>
+
+</body></html><style>
 #playBtn:hover {
   transform: scale(1.1);
 }
