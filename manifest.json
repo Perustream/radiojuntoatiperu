@@ -5,7 +5,7 @@
   "description": "Cantos a Dios - Radio Junto a Ti en vivo",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#000000",
+  "background_color": "#024d5c",
   "theme_color": "#0d47a1",
   "icons": [
     {
