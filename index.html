@@ -906,25 +906,7 @@ document.addEventListener("click", function(event) {
     menu.classList.remove("open");
   }
 });
-</script><a href="#" onclick="navigator.share ? navigator.share({ title: '', url: window.location.href }) : alert('No compatible');" style="position: fixed; top: 12px; right: 12px; z-index: 10002;">
-
-<!-- Botón Instalar debajo del botón Compartir -->
-<button id="installBtn" style="
-  position: fixed;
-  top: 60px;
-  right: 12px;
-  padding: 10px 16px;
-  background: #0d47a1;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  z-index: 10002;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  cursor: pointer;
-  display: none;
-">📲 Instalar App</button>
-<img alt="Compartir" src="https://i.postimg.cc/vZCnyBsC/share.png" style="height: 32px; width: 32px;"/></a><script>
+</script><a href="#" onclick="navigator.share ? navigator.share({ title: '', url: window.location.href }) : alert('No compatible');" style="position: fixed; top: 12px; right: 12px; z-index: 10002;"><img alt="Compartir" src="https://i.postimg.cc/vZCnyBsC/share.png" style="height: 32px; width: 32px;"/></a><script>
 function actualizarReloj() {
   const reloj = document.getElementById("reloj");
   if (reloj) {
@@ -1355,28 +1337,28 @@ if (installBtn) {
 </script>
 
 
-<script>
-let deferredPrompt;
-const installBtn = document.getElementById("installBtn");
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  if (installBtn) installBtn.style.display = "block";
-});
-if (installBtn) {
-  installBtn.addEventListener("click", async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === "accepted") {
-        installBtn.style.display = "none";
-      }
-      deferredPrompt = null;
+    <script>
+    let deferredPrompt;
+    const installBtn = document.getElementById("installBtn");
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (installBtn) installBtn.style.display = "inline-block";
+    });
+    if (installBtn) {
+      installBtn.addEventListener("click", async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          if (outcome === "accepted") {
+            installBtn.style.display = "none";
+          }
+          deferredPrompt = null;
+        }
+      });
     }
-  });
-}
-</script>
-
+    </script>
+    
 </body></html><style>
 #playBtn:hover {
   transform: scale(1.1);
